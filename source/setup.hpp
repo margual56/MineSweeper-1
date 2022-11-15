@@ -57,6 +57,7 @@ enum KEYS
 	K_DOWN = 'B',
 	K_LEFT = 'D',
 	K_RIGHT = 'C',
+	K_A = 'a',		//sweep adjacent cells
 	K_F = 'f',		//flag a cell
 	K_S = 's',		//sweep an area
 	K_ENTER = '\n', //sweep an area
