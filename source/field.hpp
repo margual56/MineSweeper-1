@@ -632,9 +632,9 @@ void Field::sweepAdjacent(int x, int y) {
   std::vector<std::pair<int, int>> adjacent{};
   int flaggedCount = 0;
   int left = x > 0 ? x - 1 : x;
-  int right = x < l ? x + 2 : x;
+  int right = x < l - 1 ? x + 2 : l;
   int bottom = y > 0 ? y - 1 : y;
-  int top = y < b ? y + 2 : y;
+  int top = y < b - 1 ? y + 2 : b;
 
   // collect coordinates of all hidden unflagged cells
   // and count hidden flagged ones
