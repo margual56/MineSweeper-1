@@ -18,6 +18,7 @@ class Field
     void markAdjMineCells();
     void startSweep(int, int);
     void startSweep(int, int, POSOFCELL, DIR_X, DIR_Y);
+    void sweepAdjacent(int, int);
     void drawField();
     void checkVictoryAndFlagMines();
     void getMove();
@@ -436,6 +437,12 @@ void Field::getMove()
         }
         startSweep(x, y);
         return;
+
+    case K_A:
+        if (!cells[x][y].hidden && cells[x][y].noOfAdjMines != 0) {
+          sweepAdjacent(x, y);
+        }
+        return;
     }
 }
 
@@ -615,4 +622,43 @@ void Field::startSweep(int x, int y, POSOFCELL pos, DIR_X x_dir, DIR_Y y_dir)
     default:
         break;
     }
+}
+
+
+/**
+ * If player has flagged enough adjacent cells, sweeps them.
+ */
+void Field::sweepAdjacent(int x, int y) {
+  std::vector<std::pair<int, int>> adjacent{};
+  int flaggedCount = 0;
+  int left = x > 0 ? x - 1 : x;
+  int right = x < l ? x + 2 : x;
+  int bottom = y > 0 ? y - 1 : y;
+  int top = y < b ? y + 2 : y;
+
+  // collect coordinates of all hidden unflagged cells
+  // and count hidden flagged ones
+  for (int i = left; i < right; i++) {
+    for (int j = bottom; j < top; j++) {
+      if (!cells[i][j].hidden)
+        continue;
+
+      if (cells[i][j].flagged) {
+        flaggedCount++;
+        continue;
+      }
+
+      adjacent.push_back(std::make_pair(i, j));
+    }
+  }
+
+  // return if player hasn't flagged enough adjacent bombs
+  // to assume all unflagged adjacent cells are safe
+  if (flaggedCount != cells[x][y].noOfAdjMines)
+    return;
+
+  // sweep all unflagged adjacent cells
+  for (auto cell : adjacent) {
+    startSweep(cell.first, cell.second);
+  }
 }

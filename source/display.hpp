@@ -41,6 +41,7 @@ void dispControls()
     writeBuf << white_fg << "  H, J, K, L : " << endl;
     writeBuf << white_fg << "  S or ENTER : Sweep" << endl;
     writeBuf << white_fg << "  F or SPACEBAR : Toggle Flag" << endl;
+    writeBuf << white_fg << "  A : Sweep all adjacent unflagged cells" << endl;
 }
 
 void dispVictoryOrDefeat()
