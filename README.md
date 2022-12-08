@@ -11,7 +11,17 @@ This is a fork, but [the original project](https://github.com/unknownblueguy6/Mi
 * AUR support (I created an AUR installer)
 * Better mechanism for clearing the screen (faster, compatible with all Operating Systems)
 * Improved the Makefile, with an option for the release version with optimizations enabled.
+### Command line arguments
+* first argument sets quick clear 1 = enabled, 0 = disabled, default = 0
+* second argument sets dificulty 1 = Beginner, 2 = Intermediate, 3 = Expert, 4 = Custom, default = Custom
 
+if 4 arguments are provided then:
+* first argument sets quick clear 1 = enabled, 0 = disabled, default = 0
+* second argument sets length of the field 
+* third argument sets breadth of the field
+* fourh argument sets number of mines
+
+All arguments are clamped to their acceptable range
 
 ## Prerequisites
 1. C++11 compiler
