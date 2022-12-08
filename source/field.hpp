@@ -13,7 +13,7 @@
 class Field
 {
   public:
-    Field();
+    Field(int, int, int);
     void mineTheField();
     void markAdjMineCells();
     void startSweep(int, int);
@@ -40,7 +40,7 @@ class Field
     GRID cells;
 };
 
-Field::Field()
+Field::Field(int _l,int _b,int _m)
 {
     switch (gameMode)
     {
@@ -76,6 +76,12 @@ Field::Field()
             std::cin >> m;
             system("clear");
         } while ((!l || !b || !m) || b < 9 || l > 30 || b > 16);
+        break;
+    case PRESET:
+        l = _l;
+        b = _b;
+        m = _m;
+        break;
     }
     x = l / 2;
     y = b / 2;
