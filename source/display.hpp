@@ -75,7 +75,7 @@ void dispVictoryOrDefeat()
 
 void setGameMode()
 {
-    int ch;
+    char ch;
     do
     {
         dispBanner();
@@ -96,16 +96,16 @@ void setGameMode()
         std::cout << "                       ";
         std::cin >> ch;
 
-        if (ch < 1 || ch > 4)
+        if (ch < '1' || ch > '4')
         {
             std::cout << red_fg << "Invalid Choice. Try again\n";
             auto c = getch();
         }
         else
-            gameMode = (GAME_MODE)ch;
+            gameMode = (GAME_MODE)(ch - '0');
         system("clear");
 
-    } while (ch < 1 || ch > 4);
+    } while (ch < '1' || ch > '4');
 }
 
 void getQuickClearSettings()
